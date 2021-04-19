@@ -46,7 +46,9 @@ do_exec() {
   fi
 
   echo "Will run $LOCUST_FILE against $TARGET_HOST. Spawning $CLIENTS clients and $REQUESTS total requests."
-  locust --host=http://$TARGET_HOST -f $LOCUST_FILE --clients=$CLIENTS --hatch-rate=5 --num-request=$REQUESTS --no-web --only-summary
+  #locust --host=http://$TARGET_HOST -f $LOCUST_FILE --clients=$CLIENTS --hatch-rate=5 --num-request=$REQUESTS --no-web --only-summary
+  #locust --host=http://$TARGET_HOST -f $LOCUST_FILE --hatch-rate=5 --only-summary
+  locust --host=http://$TARGET_HOST --locustfile=$LOCUST_FILE  --only-summary  --u=$CLIENTS --spawn-rate=$REQUESTS --run-time=10000h --headless
   echo "done"
 }
 
